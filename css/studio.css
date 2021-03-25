@@ -119,6 +119,7 @@ button {
 }
 
 .nav-link {
+    position: relative;
     display: block;
     font-weight: 500;
     font-size: 14px;
@@ -151,11 +152,9 @@ button {
     color: var(--accent-color) ;
 }
 
-.current {
-    color: var(--accent-color);
-}
 
 .current::after {
+    position: absolute;
     content: "";
     opacity: 1;
     display: block;
@@ -164,6 +163,7 @@ button {
     width: 100%;
     height: 4px;
     background-color: var(--accent-color);
+    color: var(--accent-color);
     background-size: auto;
     border-radius: 2px;
 }
@@ -181,8 +181,9 @@ button {
 }
 
 .auth-icon {
-    /* fill: var(--discription-text-color); */
+    fill: var(--discription-text-color);
     margin-right: 10px;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mail-link {
@@ -196,6 +197,7 @@ button {
     padding-bottom: 32px;
     color: var(--discription-text-color);
     fill: var(--discription-text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .auth-icon:hover ,
@@ -214,6 +216,7 @@ button {
     padding-bottom: 32px;
     color: var(--discription-text-color);
     fill: var(--discription-text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mail-link:hover,
@@ -265,8 +268,8 @@ button {
     background-color: var(--accent-color);
     color: var(--white-text-back-color);
     cursor: pointer;
-    transition: color 250ms, background-color 250ms linear;
-    transition-duration: 250ms;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-btn:hover,
@@ -297,47 +300,40 @@ button {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.2);
-    transition: all 1000ms linear;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition-property: transform background-color box-shadow fill;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
   
-.backdrop.is-hidden {
+.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
   
-.modal {
+.modal-window {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-  
     width: 528px;
     height: 581px;
-  
-    background: #ffffff;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-text-back-color);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
       0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
   
-.modal-close-btn {
+.modal-svg {
     position: absolute;
     top: 8px;
     right: 8px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    transition: transparent;
-    cursor: pointer;
-    background: var(--white-text-back-color);
+    background-color: var(--white-text-back-color);
     border: 1px solid rgba(0, 0, 0, 0.1);
+    fill: var(--black-color);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 /* Features section */
@@ -547,8 +543,13 @@ button {
     border-radius: 50%;
 }
 
+.icon-items-link {
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .team-icons {
-    fill: var(--partner-icon)
+    fill: var(--partner-icon);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-items-link:hover .icons-thumb,
@@ -589,8 +590,15 @@ button {
     border-radius: 4px;
     border: 1px solid var(--partner-icon);
     fill: var(--partner-icon);
-  
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);  
 }
+
+.partner-logo:hover,
+.partner-logo:focus {
+    color: var(--accent-color);
+}
+
+
 .partners-link:hover,
 .partners-link:focus {
     border: 1px solid var(--accent-color);
@@ -607,14 +615,14 @@ button {
     margin-bottom: 0;
     display: flex;
     align-items: baseline;
-    background-color: var(--background-color);
-}
-.footer-container {
-    display: flex;
-    align-items: baseline;
     padding-top: 60px;
     padding-bottom: 60px;
-    
+    background-color: var(--background-color);
+}
+
+.footer-container {
+    display: flex;
+    align-items: baseline;  
 }
 
 .box-foot {
@@ -652,6 +660,7 @@ button {
     line-height: 1.71;
     letter-spacing: 0.03em;
     color: var(--white-text-back-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-list-item:not(:last-child) {
@@ -685,21 +694,28 @@ button {
 
 .footer .icon-list {
     display: flex;
-  }
+}
   
-  .footer-wraper:not(:last-child) {
+.footer-wraper:not(:last-child) {
     margin-right: 70px;
-  }
+}
   
-  .icon-list-items:not(:last-child) {
+.icon-list-items:not(:last-child) {
     margin-right: 10px;
-  }
+}
   
-  .footer .icons-thumb {
+.footer .icons-thumb {
     background-color: rgba(255, 255, 255, 0.1);
-  }
-  .footer-icons {
+}
+
+.footer-icons {
     fill: var(--white-text-back-color);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-items-link {
+    color: var(--white-text-back-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
   
   
@@ -730,7 +746,10 @@ button {
     line-height: 1.63;
     cursor: pointer;
     color: var(--title-text-color);
-    background: var(--back-team-color)
+    background-color: var(--back-team-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
 .navigation-btn:hover,
@@ -798,7 +817,7 @@ button {
     position: relative;
   }
   
-  .cards-cover {
+.cards-cover {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -811,7 +830,6 @@ button {
     font-size: 18px;
     line-height: 1.56;
     letter-spacing: 0.03em;
-  
     opacity: 0;
     pointer-events: none;
     transition-property: translatex(0);
@@ -820,6 +838,9 @@ button {
     transition-delay: 0;
 }
 
+.project-cards-link {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 .project-cards-link:hover .cards-cover {
     opacity: 1;
     height: 294px;
